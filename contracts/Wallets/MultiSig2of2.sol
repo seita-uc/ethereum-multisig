@@ -115,6 +115,11 @@ contract MultiSig2of2 {
     {
         bytes32 message = _messageToRecover(destination, value);
 
+        DebugBytes32(message);
+        DebugUint8(v1);
+        DebugBytes32(r1);
+        DebugBytes32(s1);
+
         //address addr1 = ecrecover(
             //message,
             //v1+27, r1, s1
@@ -131,6 +136,10 @@ contract MultiSig2of2 {
             message,
             v2, r2, s2
         );
+
+        DebugAddress(addr1);
+        DebugAddress(addr2);
+
         require(_distinctOwners(addr1, addr2), "5");
 
         return true;

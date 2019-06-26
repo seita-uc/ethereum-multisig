@@ -1,15 +1,17 @@
-var DEFAULT_TESTRPC_HOST = "localhost";
-var DEFAULT_TESTRPC_PORT = 8545;
-var TESTRPC_HOST         = (process.env.TESTRPC_HOST || DEFAULT_TESTRPC_HOST);
-var TESTRPC_PORT         = (process.env.TESTRPC_PORT || DEFAULT_TESTRPC_PORT);
-
-console.log("Truffle using network at " + TESTRPC_HOST + ":" + TESTRPC_PORT);
-
+const HDWalletProvider = require("truffle-hdwallet-provider");
+const mnemonic = process.env.ROPSTEN_MNEMONIC_1;
+const ropsten_endpoint = process.env.GINCO_ROPSTEN_ENDPOINT;
+const infura_endpoint = "https://ropsten.infura.io/v3" + process.env.INFURA_ACCESS_TOKEN;
+const DEFAULT_TESTRPC_HOST = "localhost";
+const DEFAULT_TESTRPC_PORT = 8545;
+const TESTRPC_HOST = (process.env.TESTRPC_HOST || DEFAULT_TESTRPC_HOST);
+const TESTRPC_PORT = (process.env.TESTRPC_PORT || DEFAULT_TESTRPC_PORT);
 require('babel-polyfill')
 
 module.exports = {
     compilers: {
         solc: {
+            //TODO 最新バージョンに合わせる
             version: "^0.4.24", // A version or constraint - Ex. "^0.5.0"
             // Can also be set to "native" to use a native solc
             settings: {
@@ -22,6 +24,15 @@ module.exports = {
         }
     },
     networks: {
+        ropsten: {
+            provider: () => new HDWalletProvider(mnemonic, ropsten_endpoint, 0, 5),
+            network_id: "3",
+            websockets: true,
+        },
+        infura: {
+            provider: () => new HDWalletProvider(mnemonic, infura_endpoint),
+            network_id: "3",
+        },
         development: {
             host:       TESTRPC_HOST,
             port:       TESTRPC_PORT,
@@ -29,15 +40,5 @@ module.exports = {
             gas:        4600000
         }
     },
-    description: "A multisig Ethereum address with spending authorized by Trezors.",
-    authors: [
-        "Destry Saul <destry@unchained-capital.com>",
-        "Dhruv Bansal <dhruv@unchained-capital.com>"
-    ],
-    keywords: [
-        "ethereum",
-        "multisig",
-        "trezor"
-    ],
     license: "MIT"
 };
