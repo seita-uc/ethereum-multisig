@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 
-contract MultiSig2of3 {
+contract MultiSig2of2 {
 
     // The 3 addresses which control the funds in this contract.  The
     // owners of 2 of these addresses will need to both sign a message
