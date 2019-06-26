@@ -1041,7 +1041,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-06-26T05:57:25.368Z",
+  "updatedAt": "2019-06-26T06:33:08.439Z",
   "devdoc": {
     "methods": {
       "reclaimEther()": {

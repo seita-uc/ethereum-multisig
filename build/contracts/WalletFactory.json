@@ -200,8 +200,8 @@
           }
         ],
         "contractDependencies": [
-          184,
           96,
+          184,
           643
         ],
         "contractKind": "contract",
@@ -749,8 +749,8 @@
           }
         ],
         "contractDependencies": [
-          184,
           96,
+          184,
           643
         ],
         "contractKind": "contract",
@@ -1239,7 +1239,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-06-26T05:57:25.373Z",
+  "updatedAt": "2019-06-26T06:33:08.444Z",
   "devdoc": {
     "methods": {
       "reclaimEther()": {

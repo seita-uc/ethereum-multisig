@@ -32,12 +32,13 @@
   "homepage": "https://github.com/unchained-capital/ethereum-multisig#readme",
   "devDependencies": {
     "@ledgerhq/hw-app-eth": "^4.7.3",
-    "@ledgerhq/hw-transport-u2f": "^4.12.0",
     "@ledgerhq/hw-transport-node-hid": "^4.7.6",
+    "@ledgerhq/hw-transport-u2f": "^4.12.0",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.0.0",
     "browserify": "^15.2.0",
     "font-awesome": "^4.7.0",
+    "ganache-cli": "^6.1.5",
     "highlightjs": "^9.10.0",
     "highlightjs-solidity": "^1.0.5",
     "jquery": "^3.3.1",
@@ -47,10 +48,10 @@
     "tether": "^1.4.3",
     "trezor.js": "^6.17.6",
     "truffle": "^4.1.13",
-    "ganache-cli": "^6.1.5",
     "web3": "^0.20.4"
   },
   "dependencies": {
+    "ethereumjs-util": "^6.1.0",
     "serve": "^6.4.1"
   }
 }
