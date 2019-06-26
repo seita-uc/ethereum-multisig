@@ -115,6 +115,7 @@ contract MultiSig2of2 {
     {
         bytes32 message = _messageToRecover(destination, value);
 
+        emit DebugBytes32(message);
         //address addr1 = ecrecover(
             //message,
             //v1+27, r1, s1
