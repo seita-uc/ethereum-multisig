@@ -30,14 +30,32 @@ module.exports = async (callback) => {
         const value = 100;
 
         const message = await wallet.generateMessageToSign(destination, value);
-        const hashedMessage = web3.eth.accounts.hashMessage(message);
+        //const asciiMessage = web3.utils.hexToAscii(message);
+        const prefix = "\x19Ethereum Signed Message:\n64"
+        const packedMessage = ethabi.solidityPack(
+            [ 'bytes', 'bytes32' ],
+            //[ 'bytes' ],
+            [ Buffer.from(prefix, 'ascii'), Buffer.from(message) ]
+            //[ Buffer.from(prefix, 'ascii') ]
+            //[ Buffer.from(message, 'ascii') ]
+        )
+        console.log(packedMessage.toString('hex'));
+        const hashedMessage = ethutil.keccak256(packedMessage);
 
-        console.log("message: " + message);
-        console.log("message length: " + web3.utils.hexToBytes(message).length);
-        console.log("hashedMessage: " + hashedMessage.toString('hex'));
-
+        //const messageBuffer = ethutil.toBuffer(message);
+        //const signature1 = web3.eth.accounts.sign(hashedMessage, owner1.privateKey);
+        //const signature2 = web3.eth.accounts.sign(hashedMessage, owner2.privateKey);
         const signature1 = web3.eth.accounts.sign(message, owner1.privateKey);
         const signature2 = web3.eth.accounts.sign(message, owner2.privateKey);
+
+        //const signature1 = ethutil.ecsign(
+            //messageBuffer,
+            //ethutil.toBuffer(owner1.privateKey)
+        //);
+        //const signature2 = ethutil.ecsign(
+            //messageBuffer,
+            //ethutil.toBuffer(owner2.privateKey)
+        //);
 
         const v1 = signature1.v;
         const r1 = signature1.r;
@@ -48,6 +66,10 @@ module.exports = async (callback) => {
 
         console.log("signer1: " + accounts[0]);
         console.log("signer2: " + accounts[1]);
+        console.log("message: " + message);
+        console.log("hashedMessage: " + signature1.messageHash);
+        //console.log(signature1.messageHash);
+        //console.log(web3.eth.accounts.hashMessage(asciiMessage))
 
         console.log("v1: " + v1);
         console.log("r1: " + r1);
@@ -66,10 +88,11 @@ module.exports = async (callback) => {
             r2,
             s2,
         );
-        console.log("\nevents\n");
         for(let i = 0; i < result.logs.length; i++) {
+            console.log("\nevents\n" );
             console.log(result.logs[i].event + ": " + JSON.stringify(result.logs[i].args));
         }
+        //message 0x2effeae7d0f4e0da109cb7db0119933598592c7f6a7ab63181d892b9bd73cb60
 
         //interface
         //function spend(
@@ -82,7 +105,6 @@ module.exports = async (callback) => {
         //  bytes32 r2,
         //  bytes32 s2
         //)
-    
     } catch(err) {
         console.error(err);
     }

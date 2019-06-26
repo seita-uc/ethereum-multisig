@@ -51,6 +51,7 @@
     "web3": "^0.20.4"
   },
   "dependencies": {
+    "ethereumjs-abi": "^0.6.7",
     "ethereumjs-util": "^6.1.0",
     "serve": "^6.4.1"
   }

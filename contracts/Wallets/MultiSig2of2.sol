@@ -21,6 +21,11 @@ contract MultiSig2of2 {
     // An event sent when a spend is triggered to the given address.
     event Spent(address to, uint transfer);
 
+    event DebugBytes32(bytes32 log);
+    event DebugBytes(bytes log);
+    event DebugAddress(address log);
+    event DebugUint8(uint8 log);
+
     // Instantiate a new Multisig 2 of 3 contract owned by the
     // three given addresses
     constructor(address owner1, address owner2) public {
@@ -109,17 +114,32 @@ contract MultiSig2of2 {
         private view returns (bool)
     {
         bytes32 message = _messageToRecover(destination, value);
+
+        emit DebugBytes32(message);
+        //address addr1 = ecrecover(
+            //message,
+            //v1+27, r1, s1
+        //);
+        //address addr2 = ecrecover(
+            //message,
+            //v2+27, r2, s2
+        //);
         address addr1 = ecrecover(
             message,
-            v1+27, r1, s1
+            v1, r1, s1
         );
         address addr2 = ecrecover(
             message,
-            v2+27, r2, s2
+            v2, r2, s2
         );
-        require(_distinctOwners(addr1, addr2), "5");
-
+        emit DebugUint8(v1);
+        emit DebugUint8(v2);
+        emit DebugAddress(addr1);
         return true;
+
+        //require(_distinctOwners(addr1, addr2), "5");
+
+        //return true;
     }
 
     // Generate the the unsigned message (in bytes32) that each owner's
@@ -141,11 +161,11 @@ contract MultiSig2of2 {
             destination,
             value
         );
-        bytes memory unsignedMessageBytes = _hashToAscii(
-            hashedUnsignedMessage
-        );
-        bytes memory prefix = "\x19Ethereum Signed Message:\n64";
-        return keccak256(abi.encodePacked(prefix,unsignedMessageBytes));
+        //bytes memory unsignedMessageBytes = _hashToAscii(
+            //hashedUnsignedMessage
+        //);
+        bytes memory prefix = "\x19Ethereum Signed Message:\n32";
+        return keccak256(abi.encodePacked(prefix,hashedUnsignedMessage));
     }
 
     // Confirm the pair of addresses as two distinct owners of this contract.
