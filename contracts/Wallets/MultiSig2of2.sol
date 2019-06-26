@@ -23,20 +23,20 @@ contract MultiSig2of3 {
 
     // Instantiate a new Multisig 2 of 3 contract owned by the
     // three given addresses
-    constructor(address owner1, address owner2, address owner3) public {
+    constructor(address owner1, address owner2) public {
         address zeroAddress = 0x0;
 
         require(owner1 != zeroAddress, "1");
         require(owner2 != zeroAddress, "1");
-        require(owner3 != zeroAddress, "1");
+        //require(owner3 != zeroAddress, "1");
 
         require(owner1 != owner2, "1");
-        require(owner2 != owner3, "1");
-        require(owner1 != owner3, "1");
+        //require(owner2 != owner3, "1");
+        //require(owner1 != owner3, "1");
 
         owners[owner1] = true;
         owners[owner2] = true;
-        owners[owner3] = true;
+        //owners[owner3] = true;
     }
 
     // The fallback function for this contract.
