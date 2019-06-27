@@ -1,5 +1,6 @@
 const WalletFactory = artifacts.require('WalletFactory'); 
 const MultiSig2of2 = artifacts.require('MultiSig2of2'); 
+const Forwarder = artifacts.require('Forwarder'); 
 const ethutil = require('ethereumjs-util');
 const ethabi = require('ethereumjs-abi');
 
@@ -9,6 +10,7 @@ function logEvents(receipt) {
     for(let i = 0; i < receipt.logs.length; i++) {
         console.log(receipt.logs[i].event + ": " + JSON.stringify(receipt.logs[i].args) + "\n");
     }
+    console.log("------------------------------------------\n");
 }
 
 module.exports = async (callback) => {
@@ -43,20 +45,19 @@ module.exports = async (callback) => {
             .once('receipt', (receipt) => {
                 console.log('status: ' + receipt.status);
                 logEvents(receipt);
-            })
+            });
 
         console.log("deploying Wallet");
-        const receipt = await factory.deployWallet(owner1.address, owner2.address)
+        const walletReceipt = await factory.deployWallet(owner1.address, owner2.address)
             .once('transactionHash', (hash) => {
                 console.log('transactionHash: ' + hash);
             })
             .once('receipt', (receipt) => {
                 console.log('status: ' + receipt.status);
                 logEvents(receipt);
-            })
-
+            });
         console.log("instantiating Wallet");
-        const wallet = await MultiSig2of2.at(receipt.logs[0].args.wallet);
+        const wallet = await MultiSig2of2.at(walletReceipt.logs[0].args.wallet);
         console.log("sending ether to Wallet");
         await wallet.send(web3.utils.toWei("0.01", "ether"))
             .once('transactionHash', (hash) => {
@@ -65,7 +66,28 @@ module.exports = async (callback) => {
             .once('receipt', (receipt) => {
                 console.log('status: ' + receipt.status);
                 logEvents(receipt);
+            });
+
+        console.log("deploying Forwarder");
+        const forwarderReceipt = await wallet.createForwarder()
+            .once('transactionHash', (hash) => {
+                console.log('transactionHash: ' + hash);
             })
+            .once('receipt', (receipt) => {
+                console.log('status: ' + receipt.status);
+                logEvents(receipt);
+            });
+        console.log("instantiating Forwarder");
+        const forwarder = await Forwarder.at(forwarderReceipt.logs[0].args.forwarder);
+        console.log("sending ether to Forwarder");
+        await forwarder.send(web3.utils.toWei("0.01", "ether"))
+            .once('transactionHash', (hash) => {
+                console.log('transactionHash: ' + hash);
+            })
+            .once('receipt', (receipt) => {
+                console.log('status: ' + receipt.status);
+                logEvents(receipt);
+            });
 
         const destination = accounts[2];
         const value = 100;
