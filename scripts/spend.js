@@ -3,13 +3,21 @@ const MultiSig2of2 = artifacts.require('MultiSig2of2');
 const ethutil = require('ethereumjs-util');
 const ethabi = require('ethereumjs-abi');
 
+function logEvents(receipt) {
+    if(receipt.logs.length == 0) return;
+    console.log("\n------------------Events------------------\n");
+    for(let i = 0; i < receipt.logs.length; i++) {
+        console.log(receipt.logs[i].event + ": " + JSON.stringify(receipt.logs[i].args) + "\n");
+    }
+}
+
 module.exports = async (callback) => {
     try {
         const accounts = await web3.eth.getAccounts();
         const netId = await web3.eth.net.getId();
 
         let privKeys = [];
-        //develop
+        //develop環境
         if(netId == 5777) {
             privKeys.push("0x29c26a0b39614c5a98bcd65a8f13039102c51d0e9e0058ff918d105202c83426");
             privKeys.push("0x30d7497ac8065286e30d2ef0abde7ad270b1621b173d5a50b236d9a2bb53844c");
@@ -19,21 +27,45 @@ module.exports = async (callback) => {
             privKeys.push("0x" + web3.currentProvider.wallets[accounts[1].toLowerCase()]._privKey.toString("hex"));
         }
 
-        console.log("deploying WalletFactory");
-        const factory = await WalletFactory.new({ from: accounts[0] });
-
         console.log("setting up accounts");
         const owner1 = web3.eth.accounts.privateKeyToAccount(privKeys[0]);
         const owner2 = web3.eth.accounts.privateKeyToAccount(privKeys[1]);
 
+        console.log("accounts: " + accounts);
+        console.log("signer1: " + owner1.address);
+        console.log("signer2: " + owner2.address);
+
+        console.log("deploying WalletFactory");
+        const factory = await WalletFactory.new({ from: accounts[0] })
+            .once('transactionHash', (hash) => {
+                console.log('transactionHash: ' + hash);
+            })
+            .once('receipt', (receipt) => {
+                console.log('status: ' + receipt.status);
+                logEvents(receipt);
+            })
+
         console.log("deploying Wallet");
-        const receipt = await factory.deployWallet(owner1.address, owner2.address);
-        console.log(receipt);
+        const receipt = await factory.deployWallet(owner1.address, owner2.address)
+            .once('transactionHash', (hash) => {
+                console.log('transactionHash: ' + hash);
+            })
+            .once('receipt', (receipt) => {
+                console.log('status: ' + receipt.status);
+                logEvents(receipt);
+            })
 
         console.log("instantiating Wallet");
         const wallet = await MultiSig2of2.at(receipt.logs[0].args.wallet);
         console.log("sending ether to Wallet");
-        await wallet.send(web3.utils.toWei("0.01", "ether"));
+        await wallet.send(web3.utils.toWei("0.01", "ether"))
+            .once('transactionHash', (hash) => {
+                console.log('transactionHash: ' + hash);
+            })
+            .once('receipt', (receipt) => {
+                console.log('status: ' + receipt.status);
+                logEvents(receipt);
+            })
 
         const destination = accounts[2];
         const value = 100;
@@ -48,7 +80,6 @@ module.exports = async (callback) => {
 
         const signature1 = web3.eth.accounts.sign(message, owner1.privateKey);
         const signature2 = web3.eth.accounts.sign(message, owner2.privateKey);
-        console.log(signature1);
 
         const v1 = signature1.v;
         const r1 = signature1.r;
@@ -57,10 +88,6 @@ module.exports = async (callback) => {
         const r2 = signature2.r;
         const s2 = signature2.s;
 
-        console.log("accounts: " + accounts);
-        console.log("signer1: " + owner1.address);
-        console.log("signer2: " + owner2.address);
-
         console.log("v1: " + v1);
         console.log("r1: " + r1);
         console.log("s1: " + s1);
@@ -68,7 +95,7 @@ module.exports = async (callback) => {
         console.log("r2: " + r2);
         console.log("s2: " + s2);
 
-        const result = await wallet.spend.sendTransaction(
+        await wallet.spend.sendTransaction(
             destination,
             value,
             v1,
@@ -77,12 +104,9 @@ module.exports = async (callback) => {
             v2,
             r2,
             s2,
-        );
-
-        console.log("\n------------Events------------\n");
-        for(let i = 0; i < result.logs.length; i++) {
-            console.log(result.logs[i].event + ": " + JSON.stringify(result.logs[i].args));
-        }
+        ).once('receipt', (receipt) => {
+            logEvents(receipt);
+        });
 
         //interface
         //function spend(
