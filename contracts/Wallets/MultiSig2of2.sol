@@ -1,5 +1,5 @@
 pragma solidity ^0.5.6;
-//pragma solidity ^0.4.24;
+import "../Forwarder/Forwarder.sol";
 
 contract MultiSig2of2 {
 
@@ -21,6 +21,9 @@ contract MultiSig2of2 {
 
     // An event sent when a spend is triggered to the given address.
     event Spent(address to, uint transfer);
+
+    // An event sent when a forwarder is created.
+    event ForwarderCreated(address forwarder);
 
     event DebugBytes32(bytes32 log);
     event DebugBytes(bytes log);
@@ -48,6 +51,11 @@ contract MultiSig2of2 {
     // The fallback function for this contract.
     function() external payable {
         emit Funded(address(this).balance);
+    }
+
+    function createForwarder() public {
+        Forwarder forwarder = new Forwarder();
+        emit ForwarderCreated(address(forwarder));
     }
 
     // Generates the message to sign given the output destination address and amount.
