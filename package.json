@@ -54,6 +54,7 @@
     "ethereumjs-util": "^6.1.0",
     "ganache-cli": "^6.4.4",
     "serve": "^6.4.1",
+    "solidity-coverage": "^0.5.11",
     "truffle-hdwallet-provider": "^1.0.11"
   }
 }
