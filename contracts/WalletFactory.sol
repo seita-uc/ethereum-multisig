@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.6;
 
 import "./Wallets/MultiSig2of2.sol";
 import "./Ownership/HasNoEther.sol";

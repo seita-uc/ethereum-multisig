@@ -11,9 +11,8 @@ require('babel-polyfill')
 module.exports = {
     compilers: {
         solc: {
-            //TODO 最新バージョンに合わせる
-            version: "^0.4.24", // A version or constraint - Ex. "^0.5.0"
-            // Can also be set to "native" to use a native solc
+            version: "^0.5.6",
+            //version: "^0.4.24",
             settings: {
                 optimizer: {
                     enabled: true,

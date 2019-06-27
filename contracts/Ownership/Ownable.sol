@@ -1,6 +1,5 @@
-//pragma solidity ^0.5.6;
-pragma solidity ^0.4.24;
-
+pragma solidity ^0.5.6;
+//pragma solidity ^0.4.24;
 
 /// @title Ownable is for contracts that can be owned.
 /// @dev The Ownable contract keeps track of an owner address,

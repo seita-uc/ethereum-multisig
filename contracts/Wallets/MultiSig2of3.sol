@@ -1,5 +1,5 @@
-pragma solidity ^0.4.24;
-
+pragma solidity ^0.5.6;
+//pragma solidity ^0.4.24;
 
 // A 2/3 multisig contract compatible with Trezor or Ledger-signed messages.
 //
@@ -63,7 +63,7 @@ contract MultiSig2of3 {
     // Instantiate a new Multisig 2 of 3 contract owned by the
     // three given addresses
     constructor(address owner1, address owner2, address owner3) public {
-        address zeroAddress = 0x0;
+        address zeroAddress = address(0);
 
         require(owner1 != zeroAddress, "1");
         require(owner2 != zeroAddress, "1");
@@ -79,7 +79,7 @@ contract MultiSig2of3 {
     }
 
     // The fallback function for this contract.
-    function() public payable {
+    function() external payable {
         emit Funded(address(this).balance);
     }
 
@@ -109,7 +109,7 @@ contract MultiSig2of3 {
     // the two triplets (v1, r1, s1) and (v2, r2, s2) as signatures.
     // s1 and s2 should be 0x00 or 0x01 corresponding to 0x1b and 0x1c respectively.
     function spend(
-        address destination,
+        address payable destination,
         uint256 value,
         uint8 v1,
         bytes32 r1,
@@ -204,7 +204,7 @@ contract MultiSig2of3 {
 
     // Construct the byte representation of the ascii-encoded
     // hashed message written in hex.
-    function _hashToAscii(bytes32 hash) private pure returns (bytes) {
+    function _hashToAscii(bytes32 hash) private pure returns (bytes memory) {
         bytes memory s = new bytes(64);
         for (uint i = 0; i < 32; i++) {
             byte  b = hash[i];
@@ -219,7 +219,7 @@ contract MultiSig2of3 {
     // Convert from byte to ASCII of 0-f
     // http://www.unicode.org/charts/PDF/U0000.pdf
     function _char(byte b) private pure returns (byte c) {
-        if (b < 10) {
+        if (b < byte(uint8(10))) {
             return byte(uint8(b) + 0x30);
         } else {
             return byte(uint8(b) + 0x57);
