@@ -3,7 +3,6 @@ pragma solidity ^0.5.6;
 
 import "./Ownable.sol";
 
-
 /// @title HasNoEther is for contracts that should not own Ether
 contract HasNoEther is Ownable {
 

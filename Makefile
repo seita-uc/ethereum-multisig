@@ -81,7 +81,8 @@ freeze:
 #
 
 build/contracts/MultiSig2of3.json: contracts/MultiSig2of3.sol
-	$(TRUFFLE) compile
+	# $(TRUFFLE) compile
+	truffle compile
 
 #
 # == DAPP ==

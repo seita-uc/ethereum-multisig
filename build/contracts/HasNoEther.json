@@ -88,12 +88,12 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.10+commit.5a6ea5b1\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"reclaimEther\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"}],\"name\":\"OwnershipRenounced\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{\"constructor\":{\"details\":\"This contructor rejects incoming Ether\"},\"reclaimEther()\":{\"details\":\"Transfers all Ether held by this contract to the owner.\"},\"renounceOwnership()\":{\"details\":\"Allows the current `owner` to renounce ownership\"},\"transferOwnership(address)\":{\"details\":\"Allows the current `owner` to transfer ownership\",\"params\":{\"_newOwner\":\"The new `owner`\"}}},\"title\":\"HasNoEther is for contracts that should not own Ether\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/seita/go/src/github.com/github.com/seita-uc/ethereum-multisig/contracts/Ownership/HasNoEther.sol\":\"HasNoEther\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":1000},\"remappings\":[]},\"sources\":{\"/Users/seita/go/src/github.com/github.com/seita-uc/ethereum-multisig/contracts/Ownership/HasNoEther.sol\":{\"keccak256\":\"0x9f113b4e583190237345b812e29b55f607c77ff87fddb96c47b99643b1625a18\",\"urls\":[\"bzzr://5d608959b063fdd0ed1d3a91bd609fc266a2388fec83b6dc4c80f681681da3ca\",\"dweb:/ipfs/QmNxukadkUX9zgLPAyHandqdPKDx8p84kiAJqeCcBkonUj\"]},\"/Users/seita/go/src/github.com/github.com/seita-uc/ethereum-multisig/contracts/Ownership/Ownable.sol\":{\"keccak256\":\"0x4fd936f27a5bd09469a83a826e5f9268f8172bc07eb00c6277af2b852fb3bc19\",\"urls\":[\"bzzr://f3b53a295894d896e9ca9f576e0f7b0ea5eee8bd4e9003676e3444c4b2a2641f\",\"dweb:/ipfs/QmUZevaP919a3c31aPMb2Jx4bU8vLLKEFPDR6HtBD9JKeK\"]}},\"version\":1}",
-  "bytecode": "0x608060405260008054600160a060020a03191633179055341561008357604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601360248201527f6d757374206e6f742073656e6420457468657200000000000000000000000000604482015290519081900360640190fd5b61045b806100926000396000f3fe608060405234801561001057600080fd5b5060043610610068577c01000000000000000000000000000000000000000000000000000000006000350463715018a6811461006a5780638da5cb5b146100725780639f727c27146100a3578063f2fde38b146100ab575b005b6100686100de565b61007a6101c6565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6100686101e2565b610068600480360360208110156100c157600080fd5b503573ffffffffffffffffffffffffffffffffffffffff16610298565b60005473ffffffffffffffffffffffffffffffffffffffff16331461016457604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6000805460405173ffffffffffffffffffffffffffffffffffffffff909116917ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482091a26000805473ffffffffffffffffffffffffffffffffffffffff19169055565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b60005473ffffffffffffffffffffffffffffffffffffffff16331461026857604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6040513390303180156108fc02916000818181858888f19350505050158015610295573d6000803e3d6000fd5b50565b60005473ffffffffffffffffffffffffffffffffffffffff16331461031e57604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6102958173ffffffffffffffffffffffffffffffffffffffff81166103a457604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601960248201527f63616e6e6f742072656e6f756e6365206f776e65727368697000000000000000604482015290519081900360640190fd5b6000805460405173ffffffffffffffffffffffffffffffffffffffff808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a36000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff9290921691909117905556fea265627a7a72305820a59fa21467b3eeff9ef648d06521c47658f4dbf6c77554e96c3cc2eadf88cc1764736f6c634300050a0032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b5060043610610068577c01000000000000000000000000000000000000000000000000000000006000350463715018a6811461006a5780638da5cb5b146100725780639f727c27146100a3578063f2fde38b146100ab575b005b6100686100de565b61007a6101c6565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6100686101e2565b610068600480360360208110156100c157600080fd5b503573ffffffffffffffffffffffffffffffffffffffff16610298565b60005473ffffffffffffffffffffffffffffffffffffffff16331461016457604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6000805460405173ffffffffffffffffffffffffffffffffffffffff909116917ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482091a26000805473ffffffffffffffffffffffffffffffffffffffff19169055565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b60005473ffffffffffffffffffffffffffffffffffffffff16331461026857604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6040513390303180156108fc02916000818181858888f19350505050158015610295573d6000803e3d6000fd5b50565b60005473ffffffffffffffffffffffffffffffffffffffff16331461031e57604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6102958173ffffffffffffffffffffffffffffffffffffffff81166103a457604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601960248201527f63616e6e6f742072656e6f756e6365206f776e65727368697000000000000000604482015290519081900360640190fd5b6000805460405173ffffffffffffffffffffffffffffffffffffffff808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a36000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff9290921691909117905556fea265627a7a72305820a59fa21467b3eeff9ef648d06521c47658f4dbf6c77554e96c3cc2eadf88cc1764736f6c634300050a0032",
-  "sourceMap": "143:465:1:-;;;849:5:2;:18;;-1:-1:-1;;;;;;849:18:2;857:10;849:18;;;280:9:1;:14;272:46;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;143:465;;;;;;",
-  "deployedSourceMap": "143:465:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;143:465:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1109:123:2;;;:::i;282:20::-;;;:::i;:::-;;;;;;;;;;;;;;;;;;;503:103:1;;;:::i;1341:111:2:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1341:111:2;;;;:::i;1109:123::-;1000:5;;;;986:10;:19;978:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1191:5;;;1172:25;;1191:5;;;;;1172:25;;;1223:1;1207:18;;-1:-1:-1;;1207:18:2;;;1109:123::o;282:20::-;;;;;;:::o;503:103:1:-;1000:5:2;;;;986:10;:19;978:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;556:42:1;;:10;;584:4;576:21;556:42;;;;;;;;;576:21;556:10;:42;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;556:42:1;503:103::o;1341:111:2:-;1000:5;;;;986:10;:19;978:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1416:29;1435:9;1626:23;;;1618:61;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1715:5;;;1694:38;;;;;;;1715:5;;;1694:38;;;1742:5;:17;;-1:-1:-1;;1742:17:2;;;;;;;;;;;;1552:214::o",
-  "source": "pragma solidity ^0.5.6;\n//pragma solidity ^0.4.24;\n\nimport \"./Ownable.sol\";\n\n\n/// @title HasNoEther is for contracts that should not own Ether\ncontract HasNoEther is Ownable {\n\n    /// @dev This contructor rejects incoming Ether\n    constructor() public payable {\n        require(msg.value == 0, \"must not send Ether\");\n    }\n\n    /// @dev Disallows direct send by default function not being `payable`\n    function() external {}\n\n    /// @dev Transfers all Ether held by this contract to the owner.\n    function reclaimEther() external onlyOwner {\n        msg.sender.transfer(address(this).balance); \n    }\n}\n",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.10+commit.5a6ea5b1\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"reclaimEther\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"}],\"name\":\"OwnershipRenounced\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{\"constructor\":{\"details\":\"This contructor rejects incoming Ether\"},\"reclaimEther()\":{\"details\":\"Transfers all Ether held by this contract to the owner.\"},\"renounceOwnership()\":{\"details\":\"Allows the current `owner` to renounce ownership\"},\"transferOwnership(address)\":{\"details\":\"Allows the current `owner` to transfer ownership\",\"params\":{\"_newOwner\":\"The new `owner`\"}}},\"title\":\"HasNoEther is for contracts that should not own Ether\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/seita/go/src/github.com/github.com/seita-uc/ethereum-multisig/contracts/Ownership/HasNoEther.sol\":\"HasNoEther\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":1000},\"remappings\":[]},\"sources\":{\"/Users/seita/go/src/github.com/github.com/seita-uc/ethereum-multisig/contracts/Ownership/HasNoEther.sol\":{\"keccak256\":\"0x3de99f7caf31dde6bcd22cd1142d0dcd1dd041ca8c21dd0f8bbf1f663c7b1f90\",\"urls\":[\"bzzr://93e05ca9e0eb477df570dad1bc6c87998497049bbba7f6a617e1638601ee5a1d\",\"dweb:/ipfs/Qmb1rcBLq5QsTWvdVwqFpj4gew3JgYd5UNboEkNjfs8RL2\"]},\"/Users/seita/go/src/github.com/github.com/seita-uc/ethereum-multisig/contracts/Ownership/Ownable.sol\":{\"keccak256\":\"0x4fd936f27a5bd09469a83a826e5f9268f8172bc07eb00c6277af2b852fb3bc19\",\"urls\":[\"bzzr://f3b53a295894d896e9ca9f576e0f7b0ea5eee8bd4e9003676e3444c4b2a2641f\",\"dweb:/ipfs/QmUZevaP919a3c31aPMb2Jx4bU8vLLKEFPDR6HtBD9JKeK\"]}},\"version\":1}",
+  "bytecode": "0x608060405260008054600160a060020a03191633179055341561008357604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601360248201527f6d757374206e6f742073656e6420457468657200000000000000000000000000604482015290519081900360640190fd5b61045b806100926000396000f3fe608060405234801561001057600080fd5b5060043610610068577c01000000000000000000000000000000000000000000000000000000006000350463715018a6811461006a5780638da5cb5b146100725780639f727c27146100a3578063f2fde38b146100ab575b005b6100686100de565b61007a6101c6565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6100686101e2565b610068600480360360208110156100c157600080fd5b503573ffffffffffffffffffffffffffffffffffffffff16610298565b60005473ffffffffffffffffffffffffffffffffffffffff16331461016457604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6000805460405173ffffffffffffffffffffffffffffffffffffffff909116917ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482091a26000805473ffffffffffffffffffffffffffffffffffffffff19169055565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b60005473ffffffffffffffffffffffffffffffffffffffff16331461026857604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6040513390303180156108fc02916000818181858888f19350505050158015610295573d6000803e3d6000fd5b50565b60005473ffffffffffffffffffffffffffffffffffffffff16331461031e57604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6102958173ffffffffffffffffffffffffffffffffffffffff81166103a457604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601960248201527f63616e6e6f742072656e6f756e6365206f776e65727368697000000000000000604482015290519081900360640190fd5b6000805460405173ffffffffffffffffffffffffffffffffffffffff808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a36000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff9290921691909117905556fea265627a7a723058204d8940bccfd49830d98cce76240519ff80cb4d60b4803772cc627d5568f8a48d64736f6c634300050a0032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b5060043610610068577c01000000000000000000000000000000000000000000000000000000006000350463715018a6811461006a5780638da5cb5b146100725780639f727c27146100a3578063f2fde38b146100ab575b005b6100686100de565b61007a6101c6565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6100686101e2565b610068600480360360208110156100c157600080fd5b503573ffffffffffffffffffffffffffffffffffffffff16610298565b60005473ffffffffffffffffffffffffffffffffffffffff16331461016457604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6000805460405173ffffffffffffffffffffffffffffffffffffffff909116917ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482091a26000805473ffffffffffffffffffffffffffffffffffffffff19169055565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b60005473ffffffffffffffffffffffffffffffffffffffff16331461026857604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6040513390303180156108fc02916000818181858888f19350505050158015610295573d6000803e3d6000fd5b50565b60005473ffffffffffffffffffffffffffffffffffffffff16331461031e57604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600d60248201527f6d757374206265206f776e657200000000000000000000000000000000000000604482015290519081900360640190fd5b6102958173ffffffffffffffffffffffffffffffffffffffff81166103a457604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601960248201527f63616e6e6f742072656e6f756e6365206f776e65727368697000000000000000604482015290519081900360640190fd5b6000805460405173ffffffffffffffffffffffffffffffffffffffff808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a36000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff9290921691909117905556fea265627a7a723058204d8940bccfd49830d98cce76240519ff80cb4d60b4803772cc627d5568f8a48d64736f6c634300050a0032",
+  "sourceMap": "142:465:1:-;;;849:5:2;:18;;-1:-1:-1;;;;;;849:18:2;857:10;849:18;;;279:9:1;:14;271:46;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;142:465;;;;;;",
+  "deployedSourceMap": "142:465:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;142:465:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1109:123:2;;;:::i;282:20::-;;;:::i;:::-;;;;;;;;;;;;;;;;;;;502:103:1;;;:::i;1341:111:2:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1341:111:2;;;;:::i;1109:123::-;1000:5;;;;986:10;:19;978:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1191:5;;;1172:25;;1191:5;;;;;1172:25;;;1223:1;1207:18;;-1:-1:-1;;1207:18:2;;;1109:123::o;282:20::-;;;;;;:::o;502:103:1:-;1000:5:2;;;;986:10;:19;978:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;555:42:1;;:10;;583:4;575:21;555:42;;;;;;;;;575:21;555:10;:42;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;555:42:1;502:103::o;1341:111:2:-;1000:5;;;;986:10;:19;978:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1416:29;1435:9;1626:23;;;1618:61;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1715:5;;;1694:38;;;;;;;1715:5;;;1694:38;;;1742:5;:17;;-1:-1:-1;;1742:17:2;;;;;;;;;;;;1552:214::o",
+  "source": "pragma solidity ^0.5.6;\n//pragma solidity ^0.4.24;\n\nimport \"./Ownable.sol\";\n\n/// @title HasNoEther is for contracts that should not own Ether\ncontract HasNoEther is Ownable {\n\n    /// @dev This contructor rejects incoming Ether\n    constructor() public payable {\n        require(msg.value == 0, \"must not send Ether\");\n    }\n\n    /// @dev Disallows direct send by default function not being `payable`\n    function() external {}\n\n    /// @dev Transfers all Ether held by this contract to the owner.\n    function reclaimEther() external onlyOwner {\n        msg.sender.transfer(address(this).balance); \n    }\n}\n",
   "sourcePath": "/Users/seita/go/src/github.com/github.com/seita-uc/ethereum-multisig/contracts/Ownership/HasNoEther.sol",
   "ast": {
     "absolutePath": "/Users/seita/go/src/github.com/github.com/seita-uc/ethereum-multisig/contracts/Ownership/HasNoEther.sol",
@@ -137,7 +137,7 @@
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
               "referencedDeclaration": 184,
-              "src": "166:7:1",
+              "src": "165:7:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_contract$_Ownable_$184",
                 "typeString": "contract Ownable"
@@ -145,7 +145,7 @@
             },
             "id": 62,
             "nodeType": "InheritanceSpecifier",
-            "src": "166:7:1"
+            "src": "165:7:1"
           }
         ],
         "contractDependencies": [
@@ -166,7 +166,7 @@
             "body": {
               "id": 73,
               "nodeType": "Block",
-              "src": "262:63:1",
+              "src": "261:63:1",
               "statements": [
                 {
                   "expression": {
@@ -192,7 +192,7 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 1006,
-                            "src": "280:3:1",
+                            "src": "279:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
@@ -206,7 +206,7 @@
                           "memberName": "value",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "280:9:1",
+                          "src": "279:9:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -224,7 +224,7 @@
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "293:1:1",
+                          "src": "292:1:1",
                           "subdenomination": null,
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_0_by_1",
@@ -232,7 +232,7 @@
                           },
                           "value": "0"
                         },
-                        "src": "280:14:1",
+                        "src": "279:14:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -248,7 +248,7 @@
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "296:21:1",
+                        "src": "295:21:1",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_d79d49aa0fa6210e401541d6bc12026135b9ec74f8e1d724d9f8bab39e9d8408",
@@ -276,7 +276,7 @@
                         1010
                       ],
                       "referencedDeclaration": 1010,
-                      "src": "272:7:1",
+                      "src": "271:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
@@ -290,7 +290,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "272:46:1",
+                    "src": "271:46:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -298,7 +298,7 @@
                   },
                   "id": 72,
                   "nodeType": "ExpressionStatement",
-                  "src": "272:46:1"
+                  "src": "271:46:1"
                 }
               ]
             },
@@ -313,16 +313,16 @@
               "id": 63,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "244:2:1"
+              "src": "243:2:1"
             },
             "returnParameters": {
               "id": 64,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "262:0:1"
+              "src": "261:0:1"
             },
             "scope": 96,
-            "src": "233:92:1",
+            "src": "232:92:1",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
@@ -331,7 +331,7 @@
             "body": {
               "id": 77,
               "nodeType": "Block",
-              "src": "426:2:1",
+              "src": "425:2:1",
               "statements": []
             },
             "documentation": "@dev Disallows direct send by default function not being `payable`",
@@ -345,16 +345,16 @@
               "id": 75,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "414:2:1"
+              "src": "413:2:1"
             },
             "returnParameters": {
               "id": 76,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "426:0:1"
+              "src": "425:0:1"
             },
             "scope": 96,
-            "src": "406:22:1",
+            "src": "405:22:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -363,7 +363,7 @@
             "body": {
               "id": 94,
               "nodeType": "Block",
-              "src": "546:60:1",
+              "src": "545:60:1",
               "statements": [
                 {
                   "expression": {
@@ -381,7 +381,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 1024,
-                              "src": "584:4:1",
+                              "src": "583:4:1",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_contract$_HasNoEther_$96",
                                 "typeString": "contract HasNoEther"
@@ -401,7 +401,7 @@
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "576:7:1",
+                            "src": "575:7:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_address_$",
                               "typeString": "type(address)"
@@ -416,7 +416,7 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "576:13:1",
+                          "src": "575:13:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -430,7 +430,7 @@
                         "memberName": "balance",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "576:21:1",
+                        "src": "575:21:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -453,7 +453,7 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 1006,
-                          "src": "556:3:1",
+                          "src": "555:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
@@ -467,7 +467,7 @@
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "556:10:1",
+                        "src": "555:10:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
@@ -481,7 +481,7 @@
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "556:19:1",
+                      "src": "555:19:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
@@ -495,7 +495,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "556:42:1",
+                    "src": "555:42:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -503,7 +503,7 @@
                   },
                   "id": 93,
                   "nodeType": "ExpressionStatement",
-                  "src": "556:42:1"
+                  "src": "555:42:1"
                 }
               ]
             },
@@ -522,14 +522,14 @@
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
                   "referencedDeclaration": 131,
-                  "src": "536:9:1",
+                  "src": "535:9:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "536:9:1"
+                "src": "535:9:1"
               }
             ],
             "name": "reclaimEther",
@@ -538,26 +538,26 @@
               "id": 79,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "524:2:1"
+              "src": "523:2:1"
             },
             "returnParameters": {
               "id": 82,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "546:0:1"
+              "src": "545:0:1"
             },
             "scope": 96,
-            "src": "503:103:1",
+            "src": "502:103:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 97,
-        "src": "143:465:1"
+        "src": "142:465:1"
       }
     ],
-    "src": "0:609:1"
+    "src": "0:608:1"
   },
   "legacyAST": {
     "absolutePath": "/Users/seita/go/src/github.com/github.com/seita-uc/ethereum-multisig/contracts/Ownership/HasNoEther.sol",
@@ -601,7 +601,7 @@
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
               "referencedDeclaration": 184,
-              "src": "166:7:1",
+              "src": "165:7:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_contract$_Ownable_$184",
                 "typeString": "contract Ownable"
@@ -609,7 +609,7 @@
             },
             "id": 62,
             "nodeType": "InheritanceSpecifier",
-            "src": "166:7:1"
+            "src": "165:7:1"
           }
         ],
         "contractDependencies": [
@@ -630,7 +630,7 @@
             "body": {
               "id": 73,
               "nodeType": "Block",
-              "src": "262:63:1",
+              "src": "261:63:1",
               "statements": [
                 {
                   "expression": {
@@ -656,7 +656,7 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 1006,
-                            "src": "280:3:1",
+                            "src": "279:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
@@ -670,7 +670,7 @@
                           "memberName": "value",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "280:9:1",
+                          "src": "279:9:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -688,7 +688,7 @@
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "293:1:1",
+                          "src": "292:1:1",
                           "subdenomination": null,
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_0_by_1",
@@ -696,7 +696,7 @@
                           },
                           "value": "0"
                         },
-                        "src": "280:14:1",
+                        "src": "279:14:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -712,7 +712,7 @@
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "296:21:1",
+                        "src": "295:21:1",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_d79d49aa0fa6210e401541d6bc12026135b9ec74f8e1d724d9f8bab39e9d8408",
@@ -740,7 +740,7 @@
                         1010
                       ],
                       "referencedDeclaration": 1010,
-                      "src": "272:7:1",
+                      "src": "271:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
@@ -754,7 +754,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "272:46:1",
+                    "src": "271:46:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -762,7 +762,7 @@
                   },
                   "id": 72,
                   "nodeType": "ExpressionStatement",
-                  "src": "272:46:1"
+                  "src": "271:46:1"
                 }
               ]
             },
@@ -777,16 +777,16 @@
               "id": 63,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "244:2:1"
+              "src": "243:2:1"
             },
             "returnParameters": {
               "id": 64,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "262:0:1"
+              "src": "261:0:1"
             },
             "scope": 96,
-            "src": "233:92:1",
+            "src": "232:92:1",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
@@ -795,7 +795,7 @@
             "body": {
               "id": 77,
               "nodeType": "Block",
-              "src": "426:2:1",
+              "src": "425:2:1",
               "statements": []
             },
             "documentation": "@dev Disallows direct send by default function not being `payable`",
@@ -809,16 +809,16 @@
               "id": 75,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "414:2:1"
+              "src": "413:2:1"
             },
             "returnParameters": {
               "id": 76,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "426:0:1"
+              "src": "425:0:1"
             },
             "scope": 96,
-            "src": "406:22:1",
+            "src": "405:22:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -827,7 +827,7 @@
             "body": {
               "id": 94,
               "nodeType": "Block",
-              "src": "546:60:1",
+              "src": "545:60:1",
               "statements": [
                 {
                   "expression": {
@@ -845,7 +845,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 1024,
-                              "src": "584:4:1",
+                              "src": "583:4:1",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_contract$_HasNoEther_$96",
                                 "typeString": "contract HasNoEther"
@@ -865,7 +865,7 @@
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "576:7:1",
+                            "src": "575:7:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_address_$",
                               "typeString": "type(address)"
@@ -880,7 +880,7 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "576:13:1",
+                          "src": "575:13:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -894,7 +894,7 @@
                         "memberName": "balance",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "576:21:1",
+                        "src": "575:21:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -917,7 +917,7 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 1006,
-                          "src": "556:3:1",
+                          "src": "555:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
@@ -931,7 +931,7 @@
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "556:10:1",
+                        "src": "555:10:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
@@ -945,7 +945,7 @@
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "556:19:1",
+                      "src": "555:19:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
@@ -959,7 +959,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "556:42:1",
+                    "src": "555:42:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -967,7 +967,7 @@
                   },
                   "id": 93,
                   "nodeType": "ExpressionStatement",
-                  "src": "556:42:1"
+                  "src": "555:42:1"
                 }
               ]
             },
@@ -986,14 +986,14 @@
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
                   "referencedDeclaration": 131,
-                  "src": "536:9:1",
+                  "src": "535:9:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "536:9:1"
+                "src": "535:9:1"
               }
             ],
             "name": "reclaimEther",
@@ -1002,26 +1002,26 @@
               "id": 79,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "524:2:1"
+              "src": "523:2:1"
             },
             "returnParameters": {
               "id": 82,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "546:0:1"
+              "src": "545:0:1"
             },
             "scope": 96,
-            "src": "503:103:1",
+            "src": "502:103:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 97,
-        "src": "143:465:1"
+        "src": "142:465:1"
       }
     ],
-    "src": "0:609:1"
+    "src": "0:608:1"
   },
   "compiler": {
     "name": "solc",
@@ -1029,7 +1029,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-06-27T02:13:23.167Z",
+  "updatedAt": "2019-06-27T02:26:41.887Z",
   "devdoc": {
     "methods": {
       "constructor": {
