@@ -1,6 +1,6 @@
 pragma solidity ^0.5.6;
 
-import "../Forwarder/Forwarder.sol";
+import "../Forwarder/InitializableForwarder.sol";
 import "../Ownership/HasNoEther.sol";
 
 contract ForwarderFactory is HasNoEther {
@@ -16,16 +16,12 @@ contract ForwarderFactory is HasNoEther {
 
     constructor() public {
         contractCodeHash = keccak256(
-            type(I).creationCode
+            type(InitializableForwarder).creationCode
         );
     }
 
-    function createForwarder(uint256 _salt, address _parent) public {
-        return _createForwarder(_salt, msg.sender, _owner1, _owner2);
-    }
-
-    function createWallet(uint256 _salt, address _owner1, address _owner2) public returns (address) {
-        return _createWallet(_salt, msg.sender, _owner1, _owner2);
+    function createForwarder(uint256 _salt, address _parent) public returns (address) {
+        return _createForwarder(_salt, msg.sender, _parent);
     }
 
     function getDeploymentAddress(uint256 _salt, address _sender) public returns (address) {
@@ -43,16 +39,16 @@ contract ForwarderFactory is HasNoEther {
         return address(bytes20(rawAddress << 96));
     }
 
-    function _createWallet(uint256 _salt, address _sender, address _owner1, address _owner2) internal returns (address) {
-        InitializableMultiSig2of2 wallet = _deployWallet(_salt, _sender);
-        wallet.initialize(_owner1, _owner2);
-        emit WalletCreated(address(wallet));
-        return address(wallet);
+    function _createForwarder(uint256 _salt, address _sender, address _parent) internal returns (address) {
+        InitializableForwarder forwarder = _deployForwarder(_salt, _sender);
+        forwarder.initialize(_parent);
+        emit ForwarderCreated(address(forwarder));
+        return address(forwarder);
     }
 
-    function _deployWallet(uint256 _salt, address _sender) internal returns (InitializableMultiSig2of2) {
+    function _deployForwarder(uint256 _salt, address _sender) internal returns (InitializableForwarder) {
         address payable addr;
-        bytes memory code = type(InitializableMultiSig2of2).creationCode;
+        bytes memory code = type(InitializableForwarder).creationCode;
         bytes32 salt = _getSalt(_salt, _sender);
 
         assembly {
@@ -62,7 +58,7 @@ contract ForwarderFactory is HasNoEther {
             }
         }
 
-        return InitializableMultiSig2of2(addr);
+        return InitializableForwarder(addr);
     }
 
     function _getSalt(uint256 _salt, address _sender) internal pure returns (bytes32) {
