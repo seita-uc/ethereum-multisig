@@ -1,4 +1,5 @@
 pragma solidity ^0.5.6;
+
 import "../Forwarder/Forwarder.sol";
 
 contract InitializableMultiSig2of2 {

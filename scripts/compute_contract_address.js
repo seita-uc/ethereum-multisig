@@ -50,14 +50,8 @@ module.exports = async (callback) => {
 
         console.log("getting deployment address of wallet");
         const salt = 1;
-        const addressReceipt = await factory.getDeploymentAddress(salt, accounts[0])
-            .once('transactionHash', (hash) => {
-                console.log('transactionHash: ' + hash);
-            })
-            .once('receipt', (receipt) => {
-                console.log('status: ' + receipt.status);
-                logEvents(receipt);
-            });
+        const walletAddress = await factory.getDeploymentAddress(salt, accounts[0]);
+        console.log("deployment address: " + walletAddress);
 
         console.log("creating Wallet");
         const walletReceipt = await factory.createWallet(salt, owner1.address, owner2.address)
@@ -91,17 +85,11 @@ module.exports = async (callback) => {
             });
 
         console.log("getting deployment address of forwarder");
-        const forwarderReceipt = await forwarderFactory.getDeploymentAddress(salt, accounts[0])
-            .once('transactionHash', (hash) => {
-                console.log('transactionHash: ' + hash);
-            })
-            .once('receipt', (receipt) => {
-                console.log('status: ' + receipt.status);
-                logEvents(receipt);
-            });
+        const forwarderAddress = await forwarderFactory.getDeploymentAddress(salt, accounts[0]);
+        console.log("deployment address: " + forwarderAddress);
 
         console.log("creating Forwarder");
-        const factoryReceipt = await forwarderFactory.createForwarder(salt, wallet.address)
+        const forwarderReceipt = await forwarderFactory.createForwarder(salt, wallet.address)
             .once('transactionHash', (hash) => {
                 console.log('transactionHash: ' + hash);
             })
@@ -122,7 +110,7 @@ module.exports = async (callback) => {
             });
 
         const destination = accounts[2];
-        const value = 100;
+        const value = 100000;
 
         console.log("generating message");
         const message = await wallet.generateMessageToSign(destination, value);
