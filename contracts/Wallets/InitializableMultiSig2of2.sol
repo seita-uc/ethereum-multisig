@@ -3,6 +3,8 @@ import "../Forwarder/Forwarder.sol";
 
 contract MultiSig2of2 {
 
+    bool public initialized = false;
+
     // The 2 addresses which control the funds in this contract.  The
     // owners of 2 of these addresses will need to both sign a message
     // allowing the funds in this contract to be spent.
@@ -24,6 +26,9 @@ contract MultiSig2of2 {
 
     // An event sent when a forwarder is created.
     event ForwarderCreated(address forwarder);
+
+    // An event sent when initialized.
+    event Initialized(address forwarder);
 
     event DebugBytes32(bytes32 log);
     event DebugBytes(bytes log);
@@ -51,6 +56,12 @@ contract MultiSig2of2 {
     // The fallback function for this contract.
     function() external payable {
         emit Funded(address(this).balance);
+    }
+
+    function initialize() public {
+        require(!initialized, "This wallet has already been initialized once.");
+        Forwarder forwarder = new Forwarder();
+        emit ForwarderCreated(address(forwarder));
     }
 
     function createForwarder() public {
