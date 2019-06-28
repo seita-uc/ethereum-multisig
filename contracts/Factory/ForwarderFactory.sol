@@ -1,28 +1,34 @@
 pragma solidity ^0.5.6;
 
-import "./Wallets/InitializableMultiSig2of2.sol";
-import "./Ownership/HasNoEther.sol";
+import "../Forwarder/Forwarder.sol";
+import "../Ownership/HasNoEther.sol";
 
-contract WalletFactory2 is HasNoEther {
+contract ForwarderFactory is HasNoEther {
 
-    event WalletCreated(address wallet);
-    event DebugBytes32(bytes32 log);
-    event DebugBytes20(bytes20 log);
-    event DebugAddress(address log);
+    // An event sent when a forwarder is created.
+    event ForwarderCreated(address forwarder);
+
+    //event DebugBytes32(bytes32 log);
+    //event DebugBytes20(bytes20 log);
+    //event DebugAddress(address log);
 
     bytes32 private contractCodeHash;
 
     constructor() public {
         contractCodeHash = keccak256(
-            type(InitializableMultiSig2of2).creationCode
+            type(I).creationCode
         );
+    }
+
+    function createForwarder(uint256 _salt, address _parent) public {
+        return _createForwarder(_salt, msg.sender, _owner1, _owner2);
     }
 
     function createWallet(uint256 _salt, address _owner1, address _owner2) public returns (address) {
         return _createWallet(_salt, msg.sender, _owner1, _owner2);
     }
 
-    function getDeploymentAddress(uint256 _salt, address _sender) public view returns (address) {
+    function getDeploymentAddress(uint256 _salt, address _sender) public returns (address) {
         // Adapted from https://github.com/archanova/solidity/blob/08f8f6bedc6e71c24758d20219b7d0749d75919d/contracts/contractCreator/ContractCreator.sol
         bytes32 salt = _getSalt(_salt, _sender);
         bytes32 rawAddress = keccak256(
@@ -33,11 +39,6 @@ contract WalletFactory2 is HasNoEther {
                 contractCodeHash
         )
         );
-
-        emit DebugBytes32(rawAddress);
-        emit DebugBytes32(rawAddress << 96);
-        emit DebugBytes20(bytes20(rawAddress << 96));
-        emit DebugAddress(address(bytes20(rawAddress << 96)));
 
         return address(bytes20(rawAddress << 96));
     }
@@ -65,6 +66,7 @@ contract WalletFactory2 is HasNoEther {
     }
 
     function _getSalt(uint256 _salt, address _sender) internal pure returns (bytes32) {
-        return keccak256(abi.encodePacked(_salt, _sender)); 
+        return keccak256(abi.encodePacked(_salt, _sender));
     }
 }
+

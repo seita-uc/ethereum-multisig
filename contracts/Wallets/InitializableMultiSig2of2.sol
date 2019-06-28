@@ -24,9 +24,6 @@ contract InitializableMultiSig2of2 {
     // An event sent when a spend is triggered to the given address.
     event Spent(address to, uint transfer);
 
-    // An event sent when a forwarder is created.
-    event ForwarderCreated(address forwarder);
-
     // An event sent when initialized.
     event Initialized();
 
@@ -57,11 +54,6 @@ contract InitializableMultiSig2of2 {
 
         initialized = true;
         emit Initialized();
-    }
-
-    function createForwarder() public {
-        Forwarder forwarder = new Forwarder();
-        emit ForwarderCreated(address(forwarder));
     }
 
     // Generates the message to sign given the output destination address and amount.

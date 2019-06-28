@@ -37,17 +37,6 @@ module.exports = async (callback) => {
         console.log("signer1: " + owner1.address);
         console.log("signer2: " + owner2.address);
 
-        console.log("getting deployment address");
-        const salt = 1;
-        const addressReceipt = await WalletFactory2.getDeploymentAddress(salt, accounts[0]);
-            .once('transactionHash', (hash) => {
-                console.log('transactionHash: ' + hash);
-            })
-            .once('receipt', (receipt) => {
-                console.log('status: ' + receipt.status);
-                logEvents(receipt);
-            });
-
         console.log("deploying WalletFactory2");
         const factory = await WalletFactory2.new({ from: accounts[0] })
             .once('transactionHash', (hash) => {
@@ -57,6 +46,18 @@ module.exports = async (callback) => {
                 console.log('status: ' + receipt.status);
                 logEvents(receipt);
             });
+
+        console.log("getting deployment address");
+        const salt = 1;
+        const addressReceipt = await factory.getDeploymentAddress(salt, accounts[0])
+            .once('transactionHash', (hash) => {
+                console.log('transactionHash: ' + hash);
+            })
+            .once('receipt', (receipt) => {
+                console.log('status: ' + receipt.status);
+                logEvents(receipt);
+            });
+
 
         console.log("creating Wallet");
         const walletReceipt = await factory.createWallet(salt, owner1.address, owner2.address)
