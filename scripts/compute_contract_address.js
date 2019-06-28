@@ -1,6 +1,7 @@
 const WalletFactory2 = artifacts.require('WalletFactory2'); 
 const InitializableMultiSig2of2 = artifacts.require('InitializableMultiSig2of2'); 
-const Forwarder = artifacts.require('Forwarder'); 
+const ForwarderFactory = artifacts.require('ForwarderFactory'); 
+const Forwarder = artifacts.require('InitializableForwarder'); 
 const ethutil = require('ethereumjs-util');
 const ethabi = require('ethereumjs-abi');
 
@@ -47,7 +48,7 @@ module.exports = async (callback) => {
                 logEvents(receipt);
             });
 
-        console.log("getting deployment address");
+        console.log("getting deployment address of wallet");
         const salt = 1;
         const addressReceipt = await factory.getDeploymentAddress(salt, accounts[0])
             .once('transactionHash', (hash) => {
@@ -57,7 +58,6 @@ module.exports = async (callback) => {
                 console.log('status: ' + receipt.status);
                 logEvents(receipt);
             });
-
 
         console.log("creating Wallet");
         const walletReceipt = await factory.createWallet(salt, owner1.address, owner2.address)
@@ -80,26 +80,46 @@ module.exports = async (callback) => {
                 logEvents(receipt);
             });
 
-        //console.log("deploying Forwarder");
-        //const forwarderReceipt = await wallet.createForwarder()
-            //.once('transactionHash', (hash) => {
-                //console.log('transactionHash: ' + hash);
-            //})
-            //.once('receipt', (receipt) => {
-                //console.log('status: ' + receipt.status);
-                //logEvents(receipt);
-            //});
-        //console.log("instantiating Forwarder");
-        //const forwarder = await Forwarder.at(forwarderReceipt.logs[0].args.forwarder);
-        //console.log("sending ether to Forwarder");
-        //await forwarder.send(web3.utils.toWei("0.01", "ether"))
-            //.once('transactionHash', (hash) => {
-                //console.log('transactionHash: ' + hash);
-            //})
-            //.once('receipt', (receipt) => {
-                //console.log('status: ' + receipt.status);
-                //logEvents(receipt);
-            //});
+        console.log("deploying ForwarderFactory");
+        const forwarderFactory = await ForwarderFactory.new()
+            .once('transactionHash', (hash) => {
+                console.log('transactionHash: ' + hash);
+            })
+            .once('receipt', (receipt) => {
+                console.log('status: ' + receipt.status);
+                logEvents(receipt);
+            });
+
+        console.log("getting deployment address of forwarder");
+        const forwarderReceipt = await forwarderFactory.getDeploymentAddress(salt, accounts[0])
+            .once('transactionHash', (hash) => {
+                console.log('transactionHash: ' + hash);
+            })
+            .once('receipt', (receipt) => {
+                console.log('status: ' + receipt.status);
+                logEvents(receipt);
+            });
+
+        console.log("creating Forwarder");
+        const factoryReceipt = await forwarderFactory.createForwarder(salt, wallet.address)
+            .once('transactionHash', (hash) => {
+                console.log('transactionHash: ' + hash);
+            })
+            .once('receipt', (receipt) => {
+                console.log('status: ' + receipt.status);
+                logEvents(receipt);
+            });
+        console.log("instantiating Forwarder");
+        const forwarder = await Forwarder.at(forwarderReceipt.logs[0].args.forwarder);
+        console.log("sending ether to Forwarder");
+        await forwarder.send(web3.utils.toWei("0.01", "ether"))
+            .once('transactionHash', (hash) => {
+                console.log('transactionHash: ' + hash);
+            })
+            .once('receipt', (receipt) => {
+                console.log('status: ' + receipt.status);
+                logEvents(receipt);
+            });
 
         const destination = accounts[2];
         const value = 100;

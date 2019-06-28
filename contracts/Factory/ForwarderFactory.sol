@@ -20,11 +20,11 @@ contract ForwarderFactory is HasNoEther {
         );
     }
 
-    function createForwarder(uint256 _salt, address _parent) public returns (address) {
+    function createForwarder(uint256 _salt, address payable _parent) public returns (address) {
         return _createForwarder(_salt, msg.sender, _parent);
     }
 
-    function getDeploymentAddress(uint256 _salt, address _sender) public returns (address) {
+    function getDeploymentAddress(uint256 _salt, address _sender) public view returns (address) {
         // Adapted from https://github.com/archanova/solidity/blob/08f8f6bedc6e71c24758d20219b7d0749d75919d/contracts/contractCreator/ContractCreator.sol
         bytes32 salt = _getSalt(_salt, _sender);
         bytes32 rawAddress = keccak256(
@@ -39,7 +39,7 @@ contract ForwarderFactory is HasNoEther {
         return address(bytes20(rawAddress << 96));
     }
 
-    function _createForwarder(uint256 _salt, address _sender, address _parent) internal returns (address) {
+    function _createForwarder(uint256 _salt, address _sender, address payable _parent) internal returns (address) {
         InitializableForwarder forwarder = _deployForwarder(_salt, _sender);
         forwarder.initialize(_parent);
         emit ForwarderCreated(address(forwarder));

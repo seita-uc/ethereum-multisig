@@ -1,12 +1,13 @@
 pragma solidity ^0.5.6;
 import "./IERC20.sol";
 
-contract Forwarder {
+contract InitializableForwarder {
 
     bool public initialized = false;
     address payable public parentAddress;
 
     event ForwarderDeposited(address from, uint256 value, bytes data);
+    event Initialized();
     event TokenFlushed(address token, uint256 balance);
 
     constructor() public {}
@@ -21,7 +22,7 @@ contract Forwarder {
         emit ForwarderDeposited(msg.sender, msg.value, msg.data);
     }
 
-    function initialize(address _parent) public {
+    function initialize(address payable _parent) public {
         require(!initialized, "This contract has already been initialized.");
 
         address zeroAddress = address(0);
