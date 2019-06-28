@@ -28,40 +28,35 @@ contract MultiSig2of2 {
     event ForwarderCreated(address forwarder);
 
     // An event sent when initialized.
-    event Initialized(address forwarder);
+    event Initialized();
 
     event DebugBytes32(bytes32 log);
     event DebugBytes(bytes log);
     event DebugAddress(address log);
     event DebugUint8(uint8 log);
 
-    // Instantiate a new Multisig 2 of 3 contract owned by the
-    // three given addresses
-    constructor(address owner1, address owner2) public {
-        address zeroAddress = address(0);
-
-        require(owner1 != zeroAddress, "1");
-        require(owner2 != zeroAddress, "1");
-        //require(owner3 != zeroAddress, "1");
-
-        require(owner1 != owner2, "1");
-        //require(owner2 != owner3, "1");
-        //require(owner1 != owner3, "1");
-
-        owners[owner1] = true;
-        owners[owner2] = true;
-        //owners[owner3] = true;
-    }
+    constructor() public {}
 
     // The fallback function for this contract.
     function() external payable {
         emit Funded(address(this).balance);
     }
 
-    function initialize() public {
-        require(!initialized, "This wallet has already been initialized once.");
-        Forwarder forwarder = new Forwarder();
-        emit ForwarderCreated(address(forwarder));
+    function initialize(address _owner1, address _owner2) public {
+        require(!initialized, "1");
+
+        address zeroAddress = address(0);
+
+        require(_owner1 != zeroAddress, "1");
+        require(_owner2 != zeroAddress, "1");
+
+        require(_owner1 != _owner2, "1");
+
+        owners[_owner1] = true;
+        owners[_owner2] = true;
+
+        initialized = true;
+        emit Initialized();
     }
 
     function createForwarder() public {

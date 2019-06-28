@@ -1,11 +1,11 @@
 pragma solidity ^0.5.6;
 
-import "./Wallets/MultiSig2of2.sol";
+import "./Wallets/InitializableMultiSig2of2.sol";
 import "./Ownership/HasNoEther.sol";
 
 contract WalletFactory2 is HasNoEther {
 
-    event WalletCreated(address wallet, address owner1, address owner2);
+    event WalletCreated(address wallet);
 
     bytes32 private contractCodeHash;
 
@@ -36,8 +36,8 @@ contract WalletFactory2 is HasNoEther {
 
     function _createWallet(uint256 _salt, address _sender, address _owner1, address _owner2) internal returns (address) {
         MultiSig2of2 wallet = _deployWallet(_salt, _sender);
-        emit WalletCreated(address(wallet));
         wallet.initialize(_owner1, _owner2);
+        emit WalletCreated(address(wallet));
         return address(wallet);
     }
 

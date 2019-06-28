@@ -18,7 +18,7 @@ module.exports = {
                     enabled: true,
                     runs: 1000, // Optimize for how many times you intend to run the code
                 },
-                evmVersion: "byzantium" // Default: "byzantium"
+                evmVersion: "constantinople" // Default: "byzantium"
             }
         }
     },
