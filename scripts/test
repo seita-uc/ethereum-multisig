@@ -27,5 +27,7 @@ kill_ganache
 ${GANACHE_CLI} --port ${GANACHE_PORT} --mnemonic "${SECRET}" >> tmp/ganache.log 2>&1 &
 echo $! > tmp/ganache.pid
 #${TRUFFLE} test test/TestMultiSig2of3.js
-${TRUFFLE} test test/TestMultiSig2of2.js
+#${TRUFFLE} test test/TestMultiSig2of2.js
+${TRUFFLE} test test/TestWalletFactory.js
+
 kill_ganache

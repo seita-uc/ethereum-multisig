@@ -158,7 +158,7 @@ contract MultiSig2of2 {
             value
         );
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
-        return keccak256(abi.encodePacked(prefix,hashedUnsignedMessage));
+        return keccak256(abi.encodePacked(prefix, hashedUnsignedMessage));
     }
 
     // Confirm the pair of addresses as two distinct owners of this contract.

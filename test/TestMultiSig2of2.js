@@ -68,7 +68,7 @@ contract("When constructing", async (accounts) => {
     it("raises an error without any arguments", async () => {
         try {
             const instance = await MultiSig2of2.new();
-            assert(false, "expected error in constructor")
+            assert(false, "Expected error in constructor")
         } catch(e) {
             assert.equal(e.message, "Invalid number of parameters for \"undefined\". Got 0 expected 2!");
         }
@@ -77,7 +77,7 @@ contract("When constructing", async (accounts) => {
     it("raises an error with a single argument", async () => {
         try {
             const instance = await MultiSig2of2.new(accounts[1]);
-            assert(false, "expected error in constructor")
+            assert(false, "Expected error in constructor")
         } catch(e) {
             assert.equal(e.message, "Invalid number of parameters for \"undefined\". Got 1 expected 2!");
         }
@@ -86,7 +86,7 @@ contract("When constructing", async (accounts) => {
     it("raises an error with two arguments when the two are duplicates", async () => {
         try {
             const instance = await MultiSig2of2.new(accounts[1], accounts[1]);
-            assert(false, "expected error in constructor");
+            assert(false, "Expected error in constructor");
         } catch(e) {
             assert.equal(true, e.message.startsWith(vmExceptionTextRevert(1)));
         }
@@ -97,7 +97,7 @@ contract("When constructing", async (accounts) => {
             const instance = await MultiSig2of2.new(accounts[1], accounts[2]);
             assert(true);
         } catch(e) {
-            assert(false, "unexpected error in constructor: " + e.message);
+            assert(false, "Unexpected error in constructor: " + e.message);
         }
     });
 });

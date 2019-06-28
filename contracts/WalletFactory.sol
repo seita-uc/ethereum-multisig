@@ -11,7 +11,7 @@ contract WalletFactory is HasNoEther {
 
     constructor() public {}
 
-    function deployWallet(
+    function createWallet(
         address _owner1,
         address _owner2
     )
