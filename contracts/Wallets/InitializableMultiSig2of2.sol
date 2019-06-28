@@ -1,7 +1,7 @@
 pragma solidity ^0.5.6;
 import "../Forwarder/Forwarder.sol";
 
-contract MultiSig2of2 {
+contract InitializableMultiSig2of2 {
 
     bool public initialized = false;
 

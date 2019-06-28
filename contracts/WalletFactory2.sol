@@ -6,12 +6,15 @@ import "./Ownership/HasNoEther.sol";
 contract WalletFactory2 is HasNoEther {
 
     event WalletCreated(address wallet);
+    event DebugBytes32(bytes32 log);
+    event DebugBytes20(bytes20 log);
+    event DebugAddress(address log);
 
     bytes32 private contractCodeHash;
 
     constructor() public {
         contractCodeHash = keccak256(
-            type(MultiSig2of2).creationCode
+            type(InitializableMultiSig2of2).creationCode
         );
     }
 
@@ -31,19 +34,24 @@ contract WalletFactory2 is HasNoEther {
         )
         );
 
+        emit DebugBytes32(rawAddress);
+        emit DebugBytes32(rawAddress << 96);
+        emit DebugBytes20(bytes20(rawAddress << 96));
+        emit DebugAddress(address(bytes20(rawAddress << 96)));
+
         return address(bytes20(rawAddress << 96));
     }
 
     function _createWallet(uint256 _salt, address _sender, address _owner1, address _owner2) internal returns (address) {
-        MultiSig2of2 wallet = _deployWallet(_salt, _sender);
+        InitializableMultiSig2of2 wallet = _deployWallet(_salt, _sender);
         wallet.initialize(_owner1, _owner2);
         emit WalletCreated(address(wallet));
         return address(wallet);
     }
 
-    function _deployWallet(uint256 _salt, address _sender) internal returns (MultiSig2of2) {
+    function _deployWallet(uint256 _salt, address _sender) internal returns (InitializableMultiSig2of2) {
         address payable addr;
-        bytes memory code = type(MultiSig2of2).creationCode;
+        bytes memory code = type(InitializableMultiSig2of2).creationCode;
         bytes32 salt = _getSalt(_salt, _sender);
 
         assembly {
@@ -53,7 +61,7 @@ contract WalletFactory2 is HasNoEther {
             }
         }
 
-        return MultiSig2of2(addr);
+        return InitializableMultiSig2of2(addr);
     }
 
     function _getSalt(uint256 _salt, address _sender) internal pure returns (bytes32) {
